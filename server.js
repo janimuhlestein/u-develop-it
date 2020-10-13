@@ -3,14 +3,13 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const db = require('./db/database');
 const apiRoutes = require('./routes/apiRoutes');
+const logger = require('morgan');
 const inputCheck = require('./utils/inputCheck');
 //Express middleware
 app.use(express.urlencoded({extended: false}));
-app.use('/api', apiRoutes);
-
-
 app.use(express.json());
-
+app.use('/api', apiRoutes);
+app.use(logger('dev'));
 
 
 /*db.get(`SELECT * FROM candidates WHERE id = 1`, (err, row)=>{

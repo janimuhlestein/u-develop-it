@@ -62,12 +62,13 @@ router.delete('/candidate/:id', (req,res) => {
 });
 
 //create a candidate
-router.post('/candidate', ({ body }, res) => {
-    const errors = inputCheck(body, 'first_name', 'last_name', 'industry_connected');
+router.post('/candidate', ({body}, res) => {
+    console.log(body);
+   /* const errors = inputCheck(body, 'first_name', 'last_name', 'industry_connected');
     if (errors) {
       res.status(400).json({ error: errors });
       return;
-    }
+    }*/
     const sql = `INSERT INTO candidates (first_name, last_name, industry_connected) 
               VALUES (?,?,?)`;
     const params = [body.first_name, body.last_name, body.industry_connected];
@@ -108,6 +109,6 @@ router.put('/candidate/:id', (req, res) => {
         changes: this.changes
       });
     });
-  });
+  }); 
 
 module.exports = router;
